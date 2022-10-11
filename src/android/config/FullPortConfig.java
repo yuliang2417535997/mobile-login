@@ -103,15 +103,15 @@ public class FullPortConfig extends BaseUIConfig {
         mAuthHelper.setAuthUIConfig(new AuthUIConfig.Builder()
                 .setAppPrivacyOne("《隐私协议》", MobileLoginPlugin.myPrivacy_Web )
                 //.setAppPrivacyTwo("《百度》", "https://www.baidu.com")
-                .setAppPrivacyColor(Color.GRAY, Color.parseColor("#002E00"))
+                .setAppPrivacyColor(Color.GRAY, Color.parseColor("#EEBC57"))
                 //隐藏默认切换其他登录方式
                 .setSwitchAccHidden(true)
                 //隐藏默认Toast
                 .setLogBtnToastHidden(true)
                 //沉浸式状态栏
-                .setNavColor(Color.parseColor("#01AD4A"))
-                .setStatusBarColor(Color.parseColor("#01AD4A"))
-                .setWebViewStatusBarColor(Color.parseColor("#01AD4A"))
+                .setNavColor(Color.parseColor("#EEBC57"))
+                .setStatusBarColor(Color.parseColor("#EEBC57"))
+                .setWebViewStatusBarColor(Color.parseColor("#EEBC57"))
 
                 .setLightColor(false)
                 .setWebNavTextSizeDp(20)
