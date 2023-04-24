@@ -134,20 +134,24 @@ static MobileLoginPlugin *selfplugin = nil;
         // model.privacyNavTitleFont = [UIFont systemFontOfSize:20.0];
         // model.privacyNavTitleColor = UIColor.whiteColor;
         model.logoImage = [UIImage imageNamed:@"AppIcon"];
-        model.numberFrameBlock = { (screenSize, superViewSize,frame) -> CGRect in
-            return CGRect(width: 53, height: 53)
+        model.logoFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {  
+            frame.size.width =  53;
+            frame.size.height =  53;
+            return frame
         }
         //model.logoIsHidden = NO;
         //model.sloganIsHidden = NO;
     //一键登录slogan文案
         model.sloganText = [[NSAttributedString alloc] initWithString:@"认证服务由中国移动提供"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
-        model.sloganFrameBlock = { (screenSize, superViewSize,frame) -> CGRect in
-            return CGRect(y: 220)
+        model.sloganFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
+            frame.origin.y = 220;    
+            return frame
         }
         model.numberColor = UIColor.blackColor;
         model.numberFont = [UIFont systemFontOfSize:30.0];
-        model.numberFrameBlock = { (screenSize, superViewSize,frame) -> CGRect in
-            return CGRect(y: 180)
+        model.numberFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
+            frame.origin.y = 180;    
+            return frame
         }
         model.loginBtnText = [[NSAttributedString alloc] initWithString:@"本机号码一键登录"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:17.0]}];
        
