@@ -138,28 +138,28 @@ static MobileLoginPlugin *selfplugin = nil;
             frame.origin.y =  45;
             frame.size.width =  53;
             frame.size.height =  53;
-            return frame
-        }
+            return frame;
+        };
         //model.logoIsHidden = NO;
         //model.sloganIsHidden = NO;
     //一键登录slogan文案
         model.sloganText = [[NSAttributedString alloc] initWithString:@"认证服务由中国移动提供"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
         model.sloganFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
             frame.origin.y = 192;    
-            return frame
-        }
+            return frame;
+        };
         model.numberColor = UIColor.blackColor;
         model.numberFont = [UIFont systemFontOfSize:30.0];
         model.numberFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
             frame.origin.y = 149;    
-            return frame
-        }
+            return frame;
+        };
         model.loginBtnText = [[NSAttributedString alloc] initWithString:@"本机号码一键登录"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:17.0]}];
         model.loginBtnFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
             frame.size.height =  44; 
             frame.origin.y = 242;      
-            return frame
-        }
+            return frame;
+        };
         //model.autoHideLoginLoading = NO;
         if(webUrlString  != nil){
             model.privacyOne = @[@"《隐私政策》",webUrlString];
