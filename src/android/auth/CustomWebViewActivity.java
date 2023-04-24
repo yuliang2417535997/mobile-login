@@ -7,7 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import com.zhongzilian.chestnutapp.R;
+import com.huayu.quzhanyeapp.R;
 import com.mobile.auth.gatewayauth.Constant;
 
 /**

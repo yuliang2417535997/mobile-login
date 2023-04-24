@@ -1,13 +1,36 @@
 {
-  "name": "cordova-plugin-mobile-login",
-  "version": "1.0.0",
-  "description": "cordova 插件, 手机号码一键登录,集成阿里云的SDK",
+  "_from": "git+https://github.com/LightStarFire/cordova-plugin-mobile-login.git",
+  "_id": "cordova-plugin-mobile-login@1.0.0",
+  "_inBundle": false,
+  "_integrity": "",
+  "_location": "/cordova-plugin-mobile-login",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "git",
+    "raw": "https://github.com/LightStarFire/cordova-plugin-mobile-login.git",
+    "rawSpec": "https://github.com/LightStarFire/cordova-plugin-mobile-login.git",
+    "saveSpec": "git+https://github.com/LightStarFire/cordova-plugin-mobile-login.git",
+    "fetchSpec": "https://github.com/LightStarFire/cordova-plugin-mobile-login.git",
+    "gitCommittish": null
+  },
+  "_requiredBy": [
+    "#DEV:/",
+    "#USER"
+  ],
+  "_resolved": "git+https://github.com/LightStarFire/cordova-plugin-mobile-login.git#e6796e8540e2e374266295f039bc8254c62a75d4",
+  "_spec": "https://github.com/LightStarFire/cordova-plugin-mobile-login.git",
+  "_where": "D:\\code\\quzhanyeapp\\quzhanye",
+  "author": "",
+  "bundleDependencies": false,
   "cordova": {
     "id": "cordova-plugin-mobile-login",
     "platforms": [
       "android"
     ]
   },
+  "deprecated": false,
+  "description": "cordova 插件, 手机号码一键登录,集成阿里云的SDK",
+  "homepage": "",
   "keywords": [
     "ecosystem:cordova",
     "cordova-android",
@@ -16,14 +39,11 @@
     "float",
     "window"
   ],
+  "license": "ISC",
+  "name": "cordova-plugin-mobile-login",
   "repository": {
     "type": "git",
     "url": ""
   },
-  "bugs": {
-    "url": ""
-  },
-  "homepage": "",
-  "author": "",
-  "license": "ISC"
+  "version": "1.0.0"
 }

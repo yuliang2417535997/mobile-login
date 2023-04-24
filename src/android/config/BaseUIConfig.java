@@ -11,8 +11,9 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.aliqin.mytel.AppUtils;
 import com.aliqin.mytel.Constant;
-import com.zhongzilian.chestnutapp.R;
+import com.huayu.quzhanyeapp.R;
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper;
+import com.aliqin.mytel.login.OneKeyLoginActivity;
 
 import static com.aliqin.mytel.AppUtils.dp2px;
 
@@ -64,9 +65,16 @@ public abstract class BaseUIConfig {
         //一键登录按钮默认marginTop 270dp
         mLayoutParams.setMargins(0, dp2px(mContext, marginTop), 0, 0);
         mLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
-        switchTV.setText("切换到短信登录页面");
-        switchTV.setTextColor(Color.BLACK);
-        switchTV.setTextSize(TypedValue.COMPLEX_UNIT_SP, 13.0F);
+        if(OneKeyLoginActivity._login_type.equals("1")) {
+            switchTV.setText("其他登录方式");
+        }
+        else if (OneKeyLoginActivity._login_type.equals("2")) {
+            switchTV.setText("其他手机号绑定");
+        } else {
+            switchTV.setText("切换到短信登录页面");
+        }
+        switchTV.setTextColor(Color.parseColor("#333333"));
+        switchTV.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17.0F);
         switchTV.setLayoutParams(mLayoutParams);
         return switchTV;
     }

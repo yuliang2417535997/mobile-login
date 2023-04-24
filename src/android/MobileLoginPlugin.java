@@ -54,7 +54,7 @@ public class MobileLoginPlugin extends CordovaPlugin {
   @RequiresApi(api = Build.VERSION_CODES.M)
   @Override
   public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
-    String video_url = args.getString(0);
+    
     //初始化
     if (action.equals("onekey_init")) {
 
@@ -66,12 +66,14 @@ public class MobileLoginPlugin extends CordovaPlugin {
     }
     //一键登录
     else if (action.equals("onekey_login")) {
+      String tp = args.getString(0); // 1:切换到其他手机号短信登录方式.  2:切换到其他手机号绑定页面
       mCallbackContext = callbackContext;    //拿到回调对象并保存
       Intent pIntent = new Intent(this.cordova.getActivity(), OneKeyLoginActivity.class);
       pIntent.putExtra(THEME_KEY, 0);
      // pIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       OneKeyLoginActivity._this_context = this.cordova.getContext();
       OneKeyLoginActivity._this_activity = this.cordova.getActivity();
+      OneKeyLoginActivity._login_type = tp;
       //this.cordova.getActivity().startActivity(pIntent); // .getBaseContext()
       this.cordova.getActivity().startActivity(pIntent);
       return true;

@@ -15,8 +15,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.aliqin.mytel.MobileLoginPlugin;
-import com.zhongzilian.chestnutapp.BuildConfig;
-import com.zhongzilian.chestnutapp.R;
+import com.huayu.quzhanyeapp.BuildConfig;
+import com.huayu.quzhanyeapp.R;
 import com.aliqin.mytel.config.BaseUIConfig;
 import com.aliqin.mytel.uitls.ExecutorManager;
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper;
@@ -44,6 +44,7 @@ public class OneKeyLoginActivity extends Activity {
 
     public static Context _this_context;
     public static Activity _this_activity;
+    public static String _login_type;  // 1:切换到其他手机号短信登录方式.  2:切换到其他手机号绑定页面
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

@@ -12,19 +12,21 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.aliqin.mytel.MobileLoginPlugin;
-import com.zhongzilian.chestnutapp.R;
+import com.huayu.quzhanyeapp.R;
 import com.mobile.auth.gatewayauth.AuthRegisterViewConfig;
 import com.mobile.auth.gatewayauth.AuthUIConfig;
 import com.mobile.auth.gatewayauth.AuthUIControlClickListener;
 import com.mobile.auth.gatewayauth.CustomInterface;
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper;
 import com.mobile.auth.gatewayauth.ResultCode;
+import com.aliqin.mytel.login.OneKeyLoginActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 public class FullPortConfig extends BaseUIConfig {
     private final String TAG = "全屏竖屏样式";
+    private String btnText = "一键登录";
 
     public Activity _this_act;
 
@@ -35,6 +37,9 @@ public class FullPortConfig extends BaseUIConfig {
 
     @Override
     public void configAuthPage() {
+        if (OneKeyLoginActivity._login_type.equals("2")){
+            btnText = "一键绑定";
+        }
         mAuthHelper.setUIClickListener(new AuthUIControlClickListener() {
             @Override
             public void onClick(String code, Context context, String jsonString) {
@@ -91,7 +96,15 @@ public class FullPortConfig extends BaseUIConfig {
                     @Override
                     public void onClick(Context context) {
                          //Toast.makeText(mContext, "切换到短信登录方式", Toast.LENGTH_SHORT).show();
-                         MobileLoginPlugin.callJS("1|切换到短信登录方式"); //主动回调cordova,返回JS
+                         //MobileLoginPlugin.callJS("1|切换到短信登录方式"); //主动回调cordova,返回JS
+                         if(OneKeyLoginActivity._login_type.equals("1")) {
+                            MobileLoginPlugin.callJS("1|其他手机号登陆");
+                        }
+                        else if (OneKeyLoginActivity._login_type.equals("2")) {
+                            MobileLoginPlugin.callJS("2|其他手机号绑定");
+                        } else {
+                            MobileLoginPlugin.callJS("1|切换到短信登录方式");
+                        }
                          _this_act.onBackPressed();
                          mAuthHelper.quitLoginPage();
                     }
@@ -101,20 +114,33 @@ public class FullPortConfig extends BaseUIConfig {
             authPageOrientation = ActivityInfo.SCREEN_ORIENTATION_BEHIND;
         }
         mAuthHelper.setAuthUIConfig(new AuthUIConfig.Builder()
+                .setLogBtnText(btnText)
                 .setAppPrivacyOne("《隐私协议》", MobileLoginPlugin.myPrivacy_Web )
                 //.setAppPrivacyTwo("《百度》", "https://www.baidu.com")
-                .setAppPrivacyColor(Color.GRAY, Color.parseColor("#EEBC57"))
+                .setAppPrivacyColor(Color.GRAY, Color.parseColor("#343434"))
+				.setSloganText("认证服务由中国移动提供")
+                .setSloganTextSizeDp(13)
+                .setSloganOffsetY(220)
+                .setLogBtnText("本机号码一键登录")
+                .setLogBtnTextSizeDp(17)
+                .setNumFieldOffsetY(180)
+                .setCheckedImgPath("checked")
+                .setUncheckedImgPath("unchecked")
+                .setCheckBoxWidth(11)
+                .setCheckBoxHeight(11)
                 //隐藏默认切换其他登录方式
                 .setSwitchAccHidden(true)
                 //隐藏默认Toast
                 .setLogBtnToastHidden(true)
+                .setNavHidden(true)
                 //沉浸式状态栏
-                .setNavColor(Color.parseColor("#EEBC57"))
-                .setStatusBarColor(Color.parseColor("#EEBC57"))
-                .setWebViewStatusBarColor(Color.parseColor("#EEBC57"))
+                .setNavColor(Color.parseColor("#ffffff"))
+                .setStatusBarColor(Color.parseColor("#ffffff"))
+                .setWebViewStatusBarColor(Color.parseColor("#ffffff"))
 
-                .setLightColor(false)
-                .setWebNavTextSizeDp(20)
+                .setLightColor(true)
+                .setWebNavTextSizeDp(18)
+				.setPrivacyTextSizeDp(10)
                 //图片或者xml的传参方式为不包含后缀名的全称 需要文件需要放在drawable或drawable-xxx目录下 in_activity.xml, mytel_app_launcher.png
                 .setAuthPageActIn("in_activity", "out_activity")
                 .setAuthPageActOut("in_activity", "out_activity")
@@ -122,6 +148,8 @@ public class FullPortConfig extends BaseUIConfig {
                 .setVendorPrivacySuffix("》")
                 //.setPageBackgroundPath("page_background_color")
                 .setLogoImgPath("mytel_app_launcher")
+                .setLogoWidth(53)
+                .setLogoHeight(53)
                 //一键登录按钮三种状态背景示例login_btn_bg.xml
                 .setLogBtnBackgroundPath("login_btn_bg")
                 .setScreenOrientation(authPageOrientation)

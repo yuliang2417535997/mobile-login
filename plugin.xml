@@ -66,6 +66,8 @@
     <source-file src="src/android/res/drawable/ic_vector_bottom_personal.xml" target-dir="src/main/res/drawable"  mode="overwrite"/>
     <source-file src="src/android/res/drawable/login_btn_bg.xml" target-dir="src/main/res/drawable"  mode="overwrite"/>
     <source-file src="src/android/res/drawable/mytel_app_launcher.png" target-dir="src/main/res/drawable"  mode="overwrite"/>
+    <source-file src="src/android/res/drawable-xxhdpi/checked.png" target-dir="src/main/res/drawable"  mode="overwrite"/>
+    <source-file src="src/android/res/drawable-xxhdpi/unchecked.png" target-dir="src/main/res/drawable"  mode="overwrite"/>
     <source-file src="src/android/res/drawable/page_background_color.xml" target-dir="src/main/res/drawable"  mode="overwrite"/>
     <source-file src="src/android/res/drawable/phone.png" target-dir="src/main/res/drawable"  mode="overwrite"/>
     <source-file src="src/android/res/drawable/right.xml" target-dir="src/main/res/drawable"  mode="overwrite"/>
@@ -136,6 +138,8 @@
       <source-file src="src/ios/res/image/login_btn_normal.png" target-dir="Resources" />
     <source-file src="src/ios/res/image/login_btn_press.png" target-dir="Resources" />
     <source-file src="src/ios/res/image/login_btn_unable.png" target-dir="Resources" /> 
+    <source-file src="src/ios/res/image/checked.png" target-dir="Resources" /> 
+    <source-file src="src/ios/res/image/unchecked.png" target-dir="Resources" /> 
     -->
 
   </platform> 

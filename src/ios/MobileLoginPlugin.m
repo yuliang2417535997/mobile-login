@@ -15,6 +15,7 @@
 
 @interface MobileLoginPlugin : CDVPlugin {
     NSString *webUrlString;
+    NSString *loginType;
 } 
  
 - (void)onekey_init:(CDVInvokedUrlCommand*)command;
@@ -80,8 +81,32 @@ static MobileLoginPlugin *selfplugin = nil;
 {
     selfplugin = self;
     myAsyncCallBackId = command.callbackId;
-    
+     self->loginType  = [command.arguments objectAtIndex:0];
     [self initOneKeyLoginBtn]; 
+}
+
+- (UIColor *)colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha {
+    hexString = [hexString stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    hexString = [hexString stringByReplacingOccurrencesOfString:@"#" withString:@""];
+    hexString = [hexString stringByReplacingOccurrencesOfString:@"0x" withString:@""];
+    NSRegularExpression *RegEx = [NSRegularExpression regularExpressionWithPattern:@"^[a-fA-F|0-9]{6}$" options:0 error:nil];
+    NSUInteger match = [RegEx numberOfMatchesInString:hexString options:NSMatchingReportCompletion range:NSMakeRange(0, hexString.length)];
+
+    if (match == 0) {return [UIColor clearColor];}
+
+    NSString *rString = [hexString substringWithRange:NSMakeRange(0, 2)];
+    NSString *gString = [hexString substringWithRange:NSMakeRange(2, 2)];
+    NSString *bString = [hexString substringWithRange:NSMakeRange(4, 2)];
+    unsigned int r, g, b;
+    BOOL rValue = [[NSScanner scannerWithString:rString] scanHexInt:&r];
+    BOOL gValue = [[NSScanner scannerWithString:gString] scanHexInt:&g];
+    BOOL bValue = [[NSScanner scannerWithString:bString] scanHexInt:&b];
+    
+    if (rValue && gValue && bValue) {
+        return [UIColor colorWithRed:((float)r/255.0f) green:((float)g/255.0f) blue:((float)b/255.0f) alpha:alpha];
+    } else {
+        return [UIColor clearColor];
+    }
 }
  
 
@@ -91,42 +116,54 @@ static MobileLoginPlugin *selfplugin = nil;
     
     //自定义拉起授权页面
     TXCustomModel *model = [[TXCustomModel alloc] init];
-        model.navColor = UIColor.systemGreenColor;
-        model.navTitle = [[NSAttributedString alloc] initWithString:@"一键登录"attributes:@{NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:20.0]}];
-       //选中后的颜色
-       model.loginBtnBgImgs = @[[UIImage imageNamed:@"login_btn_normal"],[UIImage imageNamed:@"login_btn_unable"],[UIImage imageNamed:@"login_btn_press"]];
+        model.navIsHidden = YES;
+        // model.navColor = UIColor.systemYellowColor;
+        // model.navTitle = [[NSAttributedString alloc] initWithString:@"一键登录"attributes:@{NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:20.0]}];
+        model.checkBoxImages = @[[UIImage imageNamed:@"unchecked"],[UIImage imageNamed:@"checked"]];
+        model.checkBoxWH = 11.0;
+        //选中后的颜色
+        model.loginBtnBgImgs = @[[UIImage imageNamed:@"login_btn_normal"],[UIImage imageNamed:@"login_btn_unable"],[UIImage imageNamed:@"login_btn_press"]];
         //model.navIsHidden = NO;
         model.navBackImage = [UIImage imageNamed:@"icon_nav_back_light"];
         //model.hideNavBackItem = NO;
         //UIButton *rightBtn = [UIButton buttonWithType:UIButtonTypeSystem];
         //[rightBtn setTitle:@"更多" forState:UIControlStateNormal];
         //model.navMoreView = rightBtn;
-        model.privacyNavColor = UIColor.blackColor;
-        model.privacyNavBackImage = [UIImage imageNamed:@"icon_nav_back_light"];
-        model.privacyNavTitleFont = [UIFont systemFontOfSize:20.0];
-        model.privacyNavTitleColor = UIColor.whiteColor;
+        // model.privacyNavColor = UIColor.blackColor;
+        // model.privacyNavBackImage = [UIImage imageNamed:@"icon_nav_back_light"];
+        // model.privacyNavTitleFont = [UIFont systemFontOfSize:20.0];
+        // model.privacyNavTitleColor = UIColor.whiteColor;
         model.logoImage = [UIImage imageNamed:@"AppIcon"];
+        model.numberFrameBlock = { (screenSize, superViewSize,frame) -> CGRect in
+            return CGRect(width: 53, height: 53)
+        }
         //model.logoIsHidden = NO;
         //model.sloganIsHidden = NO;
     //一键登录slogan文案
-        model.sloganText = [[NSAttributedString alloc] initWithString:@"学习是一种时尚"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:16.0]}];
+        model.sloganText = [[NSAttributedString alloc] initWithString:@"认证服务由中国移动提供"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
+        model.sloganFrameBlock = { (screenSize, superViewSize,frame) -> CGRect in
+            return CGRect(y: 220)
+        }
         model.numberColor = UIColor.blackColor;
         model.numberFont = [UIFont systemFontOfSize:30.0];
-        model.loginBtnText = [[NSAttributedString alloc] initWithString:@"一键登录"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:20.0]}];
-        
+        model.numberFrameBlock = { (screenSize, superViewSize,frame) -> CGRect in
+            return CGRect(y: 180)
+        }
+        model.loginBtnText = [[NSAttributedString alloc] initWithString:@"本机号码一键登录"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:17.0]}];
+       
         //model.autoHideLoginLoading = NO;
         if(webUrlString  != nil){
             model.privacyOne = @[@"《隐私政策》",webUrlString];
         }
     
         //model.privacyTwo = @[@"《隐私2》",@"https://www.taobao.com/"];
-        model.privacyColors = @[UIColor.lightGrayColor,UIColor.blackColor];
+        model.privacyColors = [self colorWithHexString:@"#343434" alpha:1.0];
         model.privacyAlignment = NSTextAlignmentCenter;
-        model.privacyFont = [UIFont fontWithName:@"PingFangSC-Regular" size:13.0];
+        model.privacyFont = [UIFont fontWithName:@"PingFangSC-Regular" size:10.0];
         model.privacyOperatorPreText = @"《";
         model.privacyOperatorSufText = @"》";
         //model.checkBoxIsHidden = NO;
-        model.checkBoxWH = 17.0;
+        // model.checkBoxWH = 17.0;
         //model.changeBtnTitle = [[NSAttributedString alloc] initWithString:@"短信登录"attributes:@{NSForegroundColorAttributeName : UIColor.orangeColor,NSFontAttributeName : [UIFont systemFontOfSize:18.0]}];
         model.changeBtnIsHidden = YES;
         model.prefersStatusBarHidden = NO;
@@ -135,7 +172,17 @@ static MobileLoginPlugin *selfplugin = nil;
     
         //添加自定义控件并对自定义控件进行布局
         __block UIButton *customBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [customBtn setTitle:@"切换到短信登录页面" forState:UIControlStateNormal];
+
+        if([self->loginType isEqual:@"1"]){
+            [customBtn setTitle:@"其他登录方式" forState:UIControlStateNormal];
+        }else if([self->loginType isEqual:@"2"]){
+            // model.navTitle = [[NSAttributedString alloc] initWithString:@"一键绑定"attributes:@{NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:20.0]}];
+            // model.loginBtnText = [[NSAttributedString alloc] initWithString:@"一键绑定"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:20.0]}];
+            [customBtn setTitle:@"其他手机号绑定" forState:UIControlStateNormal];
+        }else{
+            [customBtn setTitle:@"切换到短信登录页面" forState:UIControlStateNormal];
+        }
+
         //[customBtn setBackgroundColor:UIColor.redColor];
         [customBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal ];
         customBtn.titleLabel.font = [UIFont systemFontOfSize: 14];
@@ -209,7 +256,13 @@ static MobileLoginPlugin *selfplugin = nil;
 
 -(void)msgButtonClick{
     [[TXCommonHandler sharedInstance] cancelLoginVCAnimated:YES complete:nil];
-    [self sendCmd:  @"1|切换到短信登录方式"];
+    if([self->loginType isEqual:@"1"]){
+        [self sendCmd:  @"1|其他登录方式"];
+    }else if([self->loginType isEqual:@"2"]){
+        [self sendCmd:  @"2|其他手机号绑定"];
+    }else{
+        [self sendCmd:  @"1|切换到短信登录方式"];
+    }
 }
  
 @end
