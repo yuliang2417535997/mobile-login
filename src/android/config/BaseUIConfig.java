@@ -63,7 +63,7 @@ public abstract class BaseUIConfig {
         TextView switchTV = new TextView(mActivity);
         RelativeLayout.LayoutParams mLayoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, dp2px(mActivity, 50));
         //一键登录按钮默认marginTop 270dp
-        mLayoutParams.setMargins(0, dp2px(mContext, marginTop), 0, 0);
+        mLayoutParams.setMargins(0, dp2px(mContext, marginTop + 10), 0, 0);
         mLayoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL, RelativeLayout.TRUE);
         if(OneKeyLoginActivity._login_type.equals("1")) {
             switchTV.setText("其他登录方式");

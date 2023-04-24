@@ -118,12 +118,14 @@ public class FullPortConfig extends BaseUIConfig {
                 .setAppPrivacyOne("《隐私协议》", MobileLoginPlugin.myPrivacy_Web )
                 //.setAppPrivacyTwo("《百度》", "https://www.baidu.com")
                 .setAppPrivacyColor(Color.GRAY, Color.parseColor("#343434"))
-				.setSloganText("认证服务由中国移动提供")
+                .setPrivacyTextSizeDp(12)
+                .setSloganText("认证服务由中国移动提供")
                 .setSloganTextSizeDp(13)
-                .setSloganOffsetY(220)
+                .setSloganOffsetY(192)
                 .setLogBtnText("本机号码一键登录")
+                .setLogBtnHeight(44)
                 .setLogBtnTextSizeDp(17)
-                .setNumFieldOffsetY(180)
+                .setNumFieldOffsetY(149)
                 .setCheckedImgPath("checked")
                 .setUncheckedImgPath("unchecked")
                 .setCheckBoxWidth(11)
@@ -140,7 +142,7 @@ public class FullPortConfig extends BaseUIConfig {
 
                 .setLightColor(true)
                 .setWebNavTextSizeDp(18)
-				.setPrivacyTextSizeDp(10)
+                .setPrivacyTextSizeDp(10)
                 //图片或者xml的传参方式为不包含后缀名的全称 需要文件需要放在drawable或drawable-xxx目录下 in_activity.xml, mytel_app_launcher.png
                 .setAuthPageActIn("in_activity", "out_activity")
                 .setAuthPageActOut("in_activity", "out_activity")
@@ -150,8 +152,10 @@ public class FullPortConfig extends BaseUIConfig {
                 .setLogoImgPath("mytel_app_launcher")
                 .setLogoWidth(53)
                 .setLogoHeight(53)
+                .setLogoOffsetY(45)
                 //一键登录按钮三种状态背景示例login_btn_bg.xml
                 .setLogBtnBackgroundPath("login_btn_bg")
+                .setLogBtnOffsetY(242)
                 .setScreenOrientation(authPageOrientation)
                 .create());
     }

@@ -135,6 +135,7 @@ static MobileLoginPlugin *selfplugin = nil;
         // model.privacyNavTitleColor = UIColor.whiteColor;
         model.logoImage = [UIImage imageNamed:@"AppIcon"];
         model.logoFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {  
+            frame.origin.y =  45;
             frame.size.width =  53;
             frame.size.height =  53;
             return frame
@@ -144,17 +145,21 @@ static MobileLoginPlugin *selfplugin = nil;
     //一键登录slogan文案
         model.sloganText = [[NSAttributedString alloc] initWithString:@"认证服务由中国移动提供"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
         model.sloganFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
-            frame.origin.y = 220;    
+            frame.origin.y = 192;    
             return frame
         }
         model.numberColor = UIColor.blackColor;
         model.numberFont = [UIFont systemFontOfSize:30.0];
         model.numberFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
-            frame.origin.y = 180;    
+            frame.origin.y = 149;    
             return frame
         }
         model.loginBtnText = [[NSAttributedString alloc] initWithString:@"本机号码一键登录"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:17.0]}];
-       
+        model.loginBtnFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
+            frame.size.height =  44; 
+            frame.origin.y = 242;      
+            return frame
+        }
         //model.autoHideLoginLoading = NO;
         if(webUrlString  != nil){
             model.privacyOne = @[@"《隐私政策》",webUrlString];
@@ -163,7 +168,7 @@ static MobileLoginPlugin *selfplugin = nil;
         //model.privacyTwo = @[@"《隐私2》",@"https://www.taobao.com/"];
         model.privacyColors = [self colorWithHexString:@"#343434" alpha:1.0];
         model.privacyAlignment = NSTextAlignmentCenter;
-        model.privacyFont = [UIFont fontWithName:@"PingFangSC-Regular" size:10.0];
+        model.privacyFont = [UIFont fontWithName:@"PingFangSC-Regular" size:12.0];
         model.privacyOperatorPreText = @"《";
         model.privacyOperatorSufText = @"》";
         //model.checkBoxIsHidden = NO;
@@ -189,7 +194,7 @@ static MobileLoginPlugin *selfplugin = nil;
 
         //[customBtn setBackgroundColor:UIColor.redColor];
         [customBtn setTitleColor:UIColor.blackColor forState:UIControlStateNormal ];
-        customBtn.titleLabel.font = [UIFont systemFontOfSize: 14];
+        customBtn.titleLabel.font = [UIFont systemFontOfSize: 17];
         //设置点击事件
         [customBtn addTarget:self action:@selector(msgButtonClick) forControlEvents:UIControlEventTouchUpInside];
         customBtn.frame = CGRectMake(0, 0, 230, 40);
@@ -199,7 +204,8 @@ static MobileLoginPlugin *selfplugin = nil;
         model.customViewLayoutBlock = ^(CGSize screenSize,CGRect contentViewFrame,CGRect navFrame,CGRect titleBarFrame,CGRect logoFrame, CGRect sloganFrame, CGRect numberFrame, CGRect loginFrame, CGRect changeBtnFrame, CGRect privacyFrame) {
             CGRect frame = customBtn.frame;
             frame.origin.x = (contentViewFrame.size.width - frame.size.width) * 0.5;
-            frame.origin.y = CGRectGetMinY(privacyFrame) / 1.7;// - frame.size.height ;
+            // frame.origin.y = CGRectGetMinY(privacyFrame) / 1.7;// - frame.size.height ;
+            frame.origin.y = 301;// - frame.size.height ;
             frame.size.width = contentViewFrame.size.width - frame.origin.x * 2;
             customBtn.frame = frame;
         };
