@@ -16,7 +16,7 @@
 @interface MobileLoginPlugin : CDVPlugin {
     NSString *webUrlString;
     NSString *loginType;
-} 
+}
  
 - (void)onekey_init:(CDVInvokedUrlCommand*)command;
 - (void)onekey_login:(CDVInvokedUrlCommand*)command;
@@ -55,7 +55,7 @@ static MobileLoginPlugin *selfplugin = nil;
      #import <ATAuthSDK/ATAuthSDK.h>
      #import <PNSNetDetect/PNSNetDetect.h>
      #import <YTXMonitor/YTXMonitor.h>
-     #import <YTXOperators/YTXOperators.h> 
+     #import <YTXOperators/YTXOperators.h>
      *
      */
 //    NSString *app_page_name = @"com.xxx.xxxx";
@@ -82,7 +82,7 @@ static MobileLoginPlugin *selfplugin = nil;
     selfplugin = self;
     myAsyncCallBackId = command.callbackId;
      self->loginType  = [command.arguments objectAtIndex:0];
-    [self initOneKeyLoginBtn]; 
+    [self initOneKeyLoginBtn];
 }
 
 - (UIColor *)colorWithHexString:(NSString *)hexString alpha:(CGFloat)alpha {
@@ -120,7 +120,7 @@ static MobileLoginPlugin *selfplugin = nil;
         // model.navColor = UIColor.systemYellowColor;
         // model.navTitle = [[NSAttributedString alloc] initWithString:@"一键登录"attributes:@{NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:20.0]}];
         model.checkBoxImages = @[[UIImage imageNamed:@"unchecked"],[UIImage imageNamed:@"checked"]];
-        model.checkBoxWH = 11.0;
+        model.checkBoxWH = 13.0;
         //选中后的颜色
         model.loginBtnBgImgs = @[[UIImage imageNamed:@"login_btn_normal"],[UIImage imageNamed:@"login_btn_unable"],[UIImage imageNamed:@"login_btn_press"]];
         //model.navIsHidden = NO;
@@ -133,10 +133,10 @@ static MobileLoginPlugin *selfplugin = nil;
         // model.privacyNavBackImage = [UIImage imageNamed:@"icon_nav_back_light"];
         // model.privacyNavTitleFont = [UIFont systemFontOfSize:20.0];
         // model.privacyNavTitleColor = UIColor.whiteColor;
-        model.logoImage = [UIImage imageNamed:@"AppIcon"];
-        model.logoFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {  
-            frame.origin.x =  screenSize.width - 26.5;
-            frame.origin.y =  89;
+        model.logoImage = [UIImage imageNamed:@"mytel_app_launcher"];
+        model.logoFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {
+            frame.origin.x =  screenSize.width / 2 - 26.5;
+            frame.origin.y =  133;
             frame.size.width =  53;
             frame.size.height =  53;
             return frame;
@@ -145,20 +145,20 @@ static MobileLoginPlugin *selfplugin = nil;
         //model.sloganIsHidden = NO;
     //一键登录slogan文案
         model.sloganText = [[NSAttributedString alloc] initWithString:@"认证服务由中国移动提供"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
-        model.sloganFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
-            frame.origin.y = 236;    
+        model.sloganFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {
+            frame.origin.y = 280;
             return frame;
         };
         model.numberColor = UIColor.blackColor;
         model.numberFont = [UIFont systemFontOfSize:30.0];
-        model.numberFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
-            frame.origin.y = 193;    
+        model.numberFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {
+            frame.origin.y = 237;
             return frame;
         };
         model.loginBtnText = [[NSAttributedString alloc] initWithString:@"本机号码一键登录"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:17.0]}];
-        model.loginBtnFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
-            frame.size.height =  44; 
-            frame.origin.y = 286;      
+        model.loginBtnFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {
+            frame.size.height =  44;
+            frame.origin.y = 330;
             return frame;
         };
         //model.autoHideLoginLoading = NO;
@@ -206,7 +206,7 @@ static MobileLoginPlugin *selfplugin = nil;
             CGRect frame = customBtn.frame;
             frame.origin.x = (contentViewFrame.size.width - frame.size.width) * 0.5;
             // frame.origin.y = CGRectGetMinY(privacyFrame) / 1.7;// - frame.size.height ;
-            frame.origin.y = 301;// - frame.size.height ;
+            frame.origin.y = 389;// - frame.size.height ;
             frame.size.width = contentViewFrame.size.width - frame.origin.x * 2;
             customBtn.frame = frame;
         };
