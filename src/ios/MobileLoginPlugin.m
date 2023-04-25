@@ -135,7 +135,8 @@ static MobileLoginPlugin *selfplugin = nil;
         // model.privacyNavTitleColor = UIColor.whiteColor;
         model.logoImage = [UIImage imageNamed:@"AppIcon"];
         model.logoFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {  
-            frame.origin.y =  45;
+            frame.origin.x =  screenSize.width - 26.5;
+            frame.origin.y =  89;
             frame.size.width =  53;
             frame.size.height =  53;
             return frame;
@@ -145,19 +146,19 @@ static MobileLoginPlugin *selfplugin = nil;
     //一键登录slogan文案
         model.sloganText = [[NSAttributedString alloc] initWithString:@"认证服务由中国移动提供"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
         model.sloganFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
-            frame.origin.y = 192;    
+            frame.origin.y = 236;    
             return frame;
         };
         model.numberColor = UIColor.blackColor;
         model.numberFont = [UIFont systemFontOfSize:30.0];
         model.numberFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
-            frame.origin.y = 149;    
+            frame.origin.y = 193;    
             return frame;
         };
         model.loginBtnText = [[NSAttributedString alloc] initWithString:@"本机号码一键登录"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:17.0]}];
         model.loginBtnFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {   
             frame.size.height =  44; 
-            frame.origin.y = 242;      
+            frame.origin.y = 286;      
             return frame;
         };
         //model.autoHideLoginLoading = NO;
