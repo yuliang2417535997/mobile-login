@@ -144,15 +144,15 @@ static MobileLoginPlugin *selfplugin = nil;
         //model.logoIsHidden = NO;
         //model.sloganIsHidden = NO;
     //一键登录slogan文案
-        model.sloganText = [[NSAttributedString alloc] initWithString:@"认证服务由中国移动提供"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
+        model.sloganText = [[NSAttributedString alloc] initWithString:@"中国银保传媒旗下的行业公共知识服务平台"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
         model.sloganFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {
-            frame.origin.y = 280;
+            frame.origin.y = 206;
             return frame;
         };
         model.numberColor = UIColor.blackColor;
         model.numberFont = [UIFont systemFontOfSize:30.0];
         model.numberFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {
-            frame.origin.y = 237;
+            frame.origin.y = 297;
             return frame;
         };
         model.loginBtnText = [[NSAttributedString alloc] initWithString:@"本机号码一键登录"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:17.0]}];

@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.aliqin.mytel.MobileLoginPlugin;
-import com.huayu.quzhanyeapp.R;
+import com.huayu.bankinsuranceapp.R;
 import com.mobile.auth.gatewayauth.AuthRegisterViewConfig;
 import com.mobile.auth.gatewayauth.AuthUIConfig;
 import com.mobile.auth.gatewayauth.AuthUIControlClickListener;
@@ -26,7 +26,7 @@ import org.json.JSONObject;
 
 public class FullPortConfig extends BaseUIConfig {
     private final String TAG = "全屏竖屏样式";
-    private String btnText = "一键登录";
+    private String btnText = "本机号码一键登录";
 
     public Activity _this_act;
 
@@ -38,7 +38,7 @@ public class FullPortConfig extends BaseUIConfig {
     @Override
     public void configAuthPage() {
         if (OneKeyLoginActivity._login_type.equals("2")){
-            btnText = "一键绑定";
+            btnText = "本机号码一键绑定";
         }
         mAuthHelper.setUIClickListener(new AuthUIControlClickListener() {
             @Override
@@ -119,10 +119,9 @@ public class FullPortConfig extends BaseUIConfig {
                 //.setAppPrivacyTwo("《百度》", "https://www.baidu.com")
                 .setAppPrivacyColor(Color.GRAY, Color.parseColor("#343434"))
                 .setPrivacyTextSizeDp(12)
-                .setSloganText("认证服务由中国移动提供")
+                .setSloganText("中国银保传媒旗下的行业公共知识服务平台")
                 .setSloganTextSizeDp(13)
-                .setSloganOffsetY(192)
-                .setLogBtnText("本机号码一键登录")
+                .setSloganOffsetY(108)
                 .setLogBtnHeight(44)
                 .setLogBtnTextSizeDp(17)
                 .setNumFieldOffsetY(149)
