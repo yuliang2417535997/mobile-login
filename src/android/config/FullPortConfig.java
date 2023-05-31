@@ -124,7 +124,7 @@ public class FullPortConfig extends BaseUIConfig {
                 .setSloganOffsetY(108)
                 .setLogBtnHeight(44)
                 .setLogBtnTextSizeDp(17)
-                .setNumFieldOffsetY(149)
+                .setNumFieldOffsetY(179)
                 .setCheckedImgPath("checked")
                 .setUncheckedImgPath("unchecked")
                 .setCheckBoxWidth(11)
