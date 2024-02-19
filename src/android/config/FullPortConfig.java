@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.aliqin.mytel.MobileLoginPlugin;
-import com.huayu.bankinsuranceapp.R;
+import com.zgncjr.bankinsuranceapp.R;
 import com.mobile.auth.gatewayauth.AuthRegisterViewConfig;
 import com.mobile.auth.gatewayauth.AuthUIConfig;
 import com.mobile.auth.gatewayauth.AuthUIControlClickListener;
@@ -117,9 +117,9 @@ public class FullPortConfig extends BaseUIConfig {
                 .setLogBtnText(btnText)
                 .setAppPrivacyOne("《隐私协议》", MobileLoginPlugin.myPrivacy_Web )
                 //.setAppPrivacyTwo("《百度》", "https://www.baidu.com")
-                .setAppPrivacyColor(Color.GRAY, Color.parseColor("#343434"))
+                .setAppPrivacyColor(Color.GRAY, Color.parseColor("#00BC9C"))
                 .setPrivacyTextSizeDp(12)
-                .setSloganText("中国银保传媒旗下的行业公共知识服务平台")
+                .setSloganText("全国农信公共知识服务平台")
                 .setSloganTextSizeDp(13)
                 .setSloganOffsetY(108)
                 .setLogBtnHeight(44)

@@ -11,7 +11,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import com.aliqin.mytel.AppUtils;
 import com.aliqin.mytel.Constant;
-import com.huayu.quzhanyeapp.R;
+import com.zgncjr.bankinsuranceapp.R;
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper;
 import com.aliqin.mytel.login.OneKeyLoginActivity;
 
@@ -76,6 +76,7 @@ public abstract class BaseUIConfig {
         switchTV.setTextColor(Color.parseColor("#333333"));
         switchTV.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17.0F);
         switchTV.setLayoutParams(mLayoutParams);
+        switchTV.setFocusable(false);
         return switchTV;
     }
 

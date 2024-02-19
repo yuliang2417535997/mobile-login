@@ -144,7 +144,7 @@ static MobileLoginPlugin *selfplugin = nil;
         //model.logoIsHidden = NO;
         //model.sloganIsHidden = NO;
     //一键登录slogan文案
-        model.sloganText = [[NSAttributedString alloc] initWithString:@"中国银保传媒旗下的行业公共知识服务平台"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
+        model.sloganText = [[NSAttributedString alloc] initWithString:@"全国农信公共知识服务平台"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
         model.sloganFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {
             frame.origin.y = 206;
             return frame;
@@ -167,7 +167,7 @@ static MobileLoginPlugin *selfplugin = nil;
         }
     
         //model.privacyTwo = @[@"《隐私2》",@"https://www.taobao.com/"];
-        model.privacyColors = [self colorWithHexString:@"#343434" alpha:1.0];
+        model.privacyColors = [self colorWithHexString:@"#00BC9C" alpha:1.0];
         model.privacyAlignment = NSTextAlignmentCenter;
         model.privacyFont = [UIFont fontWithName:@"PingFangSC-Regular" size:12.0];
         model.privacyOperatorPreText = @"《";
@@ -186,6 +186,7 @@ static MobileLoginPlugin *selfplugin = nil;
         if([self->loginType isEqual:@"1"]){
             [customBtn setTitle:@"其他登录方式" forState:UIControlStateNormal];
         }else if([self->loginType isEqual:@"2"]){
+             model.loginBtnText = [[NSAttributedString alloc] initWithString:@"本机号码一键绑定"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:17.0]}];
             // model.navTitle = [[NSAttributedString alloc] initWithString:@"一键绑定"attributes:@{NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:20.0]}];
             // model.loginBtnText = [[NSAttributedString alloc] initWithString:@"一键绑定"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:20.0]}];
             [customBtn setTitle:@"其他手机号绑定" forState:UIControlStateNormal];

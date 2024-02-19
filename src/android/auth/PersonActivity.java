@@ -13,7 +13,7 @@ import android.widget.TextView;
 
 import com.aliqin.mytel.BuildConfig;
 import com.aliqin.mytel.MessageActivity;
-import com.huayu.quzhanyeapp.R;
+import com.zgncjr.bankinsuranceapp.R;
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper;
 import com.mobile.auth.gatewayauth.TokenResultListener;
 

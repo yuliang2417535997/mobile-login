@@ -6,7 +6,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.view.View;
 
-import com.huayu.quzhanyeapp.R;
+import com.zgncjr.bankinsuranceapp.R;
 import com.mobile.auth.gatewayauth.AuthRegisterXmlConfig;
 import com.mobile.auth.gatewayauth.AuthUIConfig;
 import com.mobile.auth.gatewayauth.PhoneNumberAuthHelper;
