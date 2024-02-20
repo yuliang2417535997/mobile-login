@@ -63,7 +63,7 @@ public class NativeBackgroundAdapter {
     private String key, path;
 
     public NativeBackgroundAdapter(CacheManage cacheManage, ExecutorService executorService, final Context context,
-        String key, final String path) {
+            String key, final String path) {
         this.key = key;
         this.path = path;
         mCacheManage = cacheManage;
@@ -82,7 +82,7 @@ public class NativeBackgroundAdapter {
                     @Override
                     public void run() {
                         Bitmap bitmap = getAssetVideoCoverBitmap(context.getAssets(), path);
-                        if(null!=bitmap) {
+                        if (null != bitmap) {
                             mCacheManage.cacheBitmap(path, bitmap);
                         }
                     }
@@ -173,13 +173,17 @@ public class NativeBackgroundAdapter {
         try {
             AssetFileDescriptor afd = assetManager.openFd(videoPath);
             retriever.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(),
-                afd.getLength());
-            //获得第一帧图片
+                    afd.getLength());
+            // 获得第一帧图片
             bitmap = retriever.getFrameAtTime();
         } catch (IllegalArgumentException | IOException e) {
             Log.e("NativeBackgroundAdapter", "getAssetVideoBitmap:" + e.getMessage());
         } finally {
-            retriever.release();
+            try {
+                retriever.release();
+            } catch (Exception ex) {
+                Log.e("NativeBackgroundAdapter", "getAssetVideoBitmap-retriever.release:" + ex.getMessage());
+            }
         }
         return bitmap;
     }
@@ -195,7 +199,7 @@ public class NativeBackgroundAdapter {
             public void run() {
                 try {
                     InputStream inputStream = context.getAssets().open(
-                        path);
+                            path);
                     Movie gif = Movie.decodeStream(inputStream);
                     final Bitmap firstFrame = Bitmap.createBitmap(gif.width(), gif.height(), Bitmap.Config.ARGB_8888);
                     Canvas canvas = new Canvas(firstFrame);
@@ -223,7 +227,7 @@ public class NativeBackgroundAdapter {
      */
     @TargetApi(VERSION_CODES.JELLY_BEAN)
     private void playVideo(final FrameLayout frameLayout, final String path, String backgroundColor) {
-        final MediaPlayer[] mediaPlayer = {new MediaPlayer()};
+        final MediaPlayer[] mediaPlayer = { new MediaPlayer() };
         final TextureView textureView = new TextureView(frameLayout.getContext());
         LayoutParams params = new LayoutParams(MATCH_PARENT, MATCH_PARENT);
         frameLayout.addView(textureView, params);
@@ -291,8 +295,8 @@ public class NativeBackgroundAdapter {
                 }
             }
         };
-        ((Application)frameLayout.getContext()).registerActivityLifecycleCallbacks(
-            activityLifecycleCallbacks);
+        ((Application) frameLayout.getContext()).registerActivityLifecycleCallbacks(
+                activityLifecycleCallbacks);
         mediaPlayer[0].setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer[0].setLooping(true);
         mediaPlayer[0].setVolume(0, 0);
@@ -300,7 +304,7 @@ public class NativeBackgroundAdapter {
         try {
             afd = frameLayout.getContext().getAssets().openFd(path);
             mediaPlayer[0].setDataSource(afd.getFileDescriptor(), afd.getStartOffset(),
-                afd.getLength());
+                    afd.getLength());
         } catch (Exception e) {
             Log.e("NativeBackgroundAdapter", "playVideo===readAssets:" + e.getMessage());
         }
@@ -339,14 +343,14 @@ public class NativeBackgroundAdapter {
             textureView.setSurfaceTextureListener(new SurfaceTextureListener() {
                 @Override
                 public void onSurfaceTextureAvailable(@NonNull SurfaceTexture surface, int width,
-                                                      int height) {
+                        int height) {
                     Surface mSurface = new Surface(surface);
                     mediaPlayer[0].setSurface(mSurface);
                 }
 
                 @Override
                 public void onSurfaceTextureSizeChanged(@NonNull SurfaceTexture surface, int width,
-                    int height) {
+                        int height) {
 
                 }
 
@@ -377,21 +381,22 @@ public class NativeBackgroundAdapter {
      */
     private void updateTextureViewSizeCenter(TextureView textureView, int mVideoWidth, int mVideoHeight) {
 
-        float sx = (float)textureView.getWidth() / (float)mVideoWidth;
-        float sy = (float)textureView.getHeight() / (float)mVideoHeight;
+        float sx = (float) textureView.getWidth() / (float) mVideoWidth;
+        float sy = (float) textureView.getHeight() / (float) mVideoHeight;
 
         Matrix matrix = new Matrix();
         float maxScale = Math.max(sx, sy);
 
-        //第1步:把视频区移动到View区,使两者中心点重合.
+        // 第1步:把视频区移动到View区,使两者中心点重合.
         matrix.preTranslate((textureView.getWidth() - mVideoWidth) / 2, (textureView.getHeight() - mVideoHeight) / 2);
 
-        //第2步:因为默认视频是fitXY的形式显示的,所以首先要缩放还原回来.
-        matrix.preScale(mVideoWidth / (float)textureView.getWidth(), mVideoHeight / (float)textureView.getHeight());
+        // 第2步:因为默认视频是fitXY的形式显示的,所以首先要缩放还原回来.
+        matrix.preScale(mVideoWidth / (float) textureView.getWidth(), mVideoHeight / (float) textureView.getHeight());
 
-        //第3步,等比例放大或缩小,直到视频区的一边超过View一边, 另一边与View的另一边相等. 因为超过的部分超出了View的范围,所以是不会显示的,相当于裁剪了.
+        // 第3步,等比例放大或缩小,直到视频区的一边超过View一边, 另一边与View的另一边相等.
+        // 因为超过的部分超出了View的范围,所以是不会显示的,相当于裁剪了.
         matrix.postScale(maxScale, maxScale, textureView.getWidth() / 2,
-            textureView.getHeight() / 2);//后两个参数坐标是以整个View的坐标系以参考的
+                textureView.getHeight() / 2);// 后两个参数坐标是以整个View的坐标系以参考的
         textureView.setTransform(matrix);
         textureView.postInvalidate();
     }
@@ -408,7 +413,7 @@ public class NativeBackgroundAdapter {
                 AssetManager assetManager = context.getAssets();
                 try {
                     InputStream inputStream = assetManager.open(
-                        path);
+                            path);
                     final GifAnimationDrawable gifAnimationDrawable = new GifAnimationDrawable(inputStream);
                     if (onGifListener != null) {
                         onGifListener.onGifDownloaded(gifAnimationDrawable);
@@ -480,8 +485,8 @@ public class NativeBackgroundAdapter {
 
             }
         };
-        ((Application)imageView.getContext()).registerActivityLifecycleCallbacks(
-            activityLifecycleCallbacks);
+        ((Application) imageView.getContext()).registerActivityLifecycleCallbacks(
+                activityLifecycleCallbacks);
         imageView.setImageDrawable(gifAnimationDrawable);
         gifAnimationDrawable.start();
     }
