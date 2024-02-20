@@ -81,10 +81,10 @@
     <source-file src="src/android/res/drawable-xxhdpi/icon_close.png" target-dir="src/main/res/drawable-xxhdpi"  mode="overwrite"/>  
  
      
-    <source-file src="src/android/libs/auth_number_product-2.12.9-log-online-standard-release.aar" target-dir="libs" />
+    <source-file src="src/android/libs/auth_number_product-2.13.3-log-online-standard-cuum-release.aar" target-dir="libs" />
     <source-file src="src/android/libs/crashshield-2.1.4-release.aar" target-dir="libs" />
-    <source-file src="src/android/libs/logger-2.1.4-release.aar" target-dir="libs" />
-    <source-file src="src/android/libs/main-2.1.4-release.aar" target-dir="libs" />
+    <source-file src="src/android/libs/logger-2.2.2-release.aar" target-dir="libs" />
+    <source-file src="src/android/libs/main-2.2.2-release.aar" target-dir="libs" />
 
     <framework src="src/android/gradle/aliMobleLogin.gradle" custom="true" type="gradleReference"/>
 
