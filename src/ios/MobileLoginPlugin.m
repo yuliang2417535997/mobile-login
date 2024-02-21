@@ -144,7 +144,7 @@ static MobileLoginPlugin *selfplugin = nil;
         //model.logoIsHidden = NO;
         //model.sloganIsHidden = NO;
     //一键登录slogan文案
-        model.sloganText = [[NSAttributedString alloc] initWithString:@"全国农信公共知识服务平台"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
+        model.sloganText = [[NSAttributedString alloc] initWithString:@"中国银保传媒旗下的行业公共知识服务平台"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
         model.sloganFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {
             frame.origin.y = 206;
             return frame;
@@ -157,8 +157,8 @@ static MobileLoginPlugin *selfplugin = nil;
         };
         model.loginBtnText = [[NSAttributedString alloc] initWithString:@"本机号码一键登录"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:17.0]}];
         model.loginBtnFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {
-            frame.size.height =  44;
-            frame.origin.y = 330;
+            frame.size.height =  53;
+            frame.origin.y = 360;
             return frame;
         };
         //model.autoHideLoginLoading = NO;
@@ -186,9 +186,7 @@ static MobileLoginPlugin *selfplugin = nil;
         if([self->loginType isEqual:@"1"]){
             [customBtn setTitle:@"其他登录方式" forState:UIControlStateNormal];
         }else if([self->loginType isEqual:@"2"]){
-             model.loginBtnText = [[NSAttributedString alloc] initWithString:@"本机号码一键绑定"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:17.0]}];
-            // model.navTitle = [[NSAttributedString alloc] initWithString:@"一键绑定"attributes:@{NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:20.0]}];
-            // model.loginBtnText = [[NSAttributedString alloc] initWithString:@"一键绑定"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:20.0]}];
+            model.loginBtnText = [[NSAttributedString alloc] initWithString:@"本机号码一键绑定"attributes:@{  NSForegroundColorAttributeName : UIColor.whiteColor,NSFontAttributeName : [UIFont systemFontOfSize:17.0]}];
             [customBtn setTitle:@"其他手机号绑定" forState:UIControlStateNormal];
         }else{
             [customBtn setTitle:@"切换到短信登录页面" forState:UIControlStateNormal];
@@ -207,7 +205,7 @@ static MobileLoginPlugin *selfplugin = nil;
             CGRect frame = customBtn.frame;
             frame.origin.x = (contentViewFrame.size.width - frame.size.width) * 0.5;
             // frame.origin.y = CGRectGetMinY(privacyFrame) / 1.7;// - frame.size.height ;
-            frame.origin.y = 389;// - frame.size.height ;
+            frame.origin.y = 419;// - frame.size.height ;
             frame.size.width = contentViewFrame.size.width - frame.origin.x * 2;
             customBtn.frame = frame;
         };
@@ -246,7 +244,7 @@ static MobileLoginPlugin *selfplugin = nil;
                 [[TXCommonHandler sharedInstance] cancelLoginVCAnimated:YES complete:nil];
                 [self sendCmd:  @"0|一键登录失败切换到其他登录方式"];
   
-            }
+            } 
         }];
     //}
 }
