@@ -144,7 +144,7 @@ static MobileLoginPlugin *selfplugin = nil;
         //model.logoIsHidden = NO;
         //model.sloganIsHidden = NO;
     //一键登录slogan文案
-        model.sloganText = [[NSAttributedString alloc] initWithString:@"中国银保传媒旗下的行业公共知识服务平台"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
+        model.sloganText = [[NSAttributedString alloc] initWithString:@"全国农信公共知识服务平台"attributes:@{NSForegroundColorAttributeName : UIColor.grayColor,NSFontAttributeName : [UIFont systemFontOfSize:13.0]}];
         model.sloganFrameBlock = ^CGRect(CGSize screenSize, CGSize superViewSize, CGRect frame) {
             frame.origin.y = 206;
             return frame;
